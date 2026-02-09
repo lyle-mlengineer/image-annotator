@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- STYLES CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', path='css/base.css') }}">
+
+        <!-- BOX ICONS CSS-->
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+        {% block styles %}{% endblock %}
+        <title>Base</title>
+    </head>
+    <body id="body">
+        <div class="l-navbar" id="navbar">
+            <nav class="nav">
+                <div>
+                    <a href="#" class="nav__logo">
+                        <img src="{{ url_for('static', path='img/logo.svg') }}" alt="" class="nav__logo-icon">
+                        <span class="nav__logo-text">SVFDL</span>
+                    </a>
+    
+                    <div class="nav__toggle" id="nav-toggle">
+                        <i class='bx bx-chevron-right'></i>
+                    </div>
+    
+                    <ul class="nav__list">
+                        <a href="#" class="nav__link active">
+                            <i class='bx bx-grid-alt nav__icon'></i>
+                            <span class="nav__text">Dashboard</span>
+                        </a>
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-plus nav__icon' ></i>
+                            <span class="nav__text">Upload</span>
+                        </a>
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-edit-alt nav__icon' ></i>
+                            <span class="nav__text">Label</span>
+                        </a>
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-images nav__icon' ></i>
+                            <span class="nav__text">Gallery</span>
+                        </a>
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-folder nav__icon'></i>
+                            <span class="nav__text">Datasets</span>
+                        </a>
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-user nav__icon' ></i>
+                            <span class="nav__text">Account</span>
+                        </a>
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-bell nav__icon' ></i>
+                            <span class="nav__text">Notifications</span>
+                        </a>
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-cog nav__icon' ></i>
+                            <span class="nav__text">Settings</span>
+                        </a>                 
+                    </ul>
+                </div>
+                <a href="#" class="nav__link">           
+                    <i class='bx bx-log-out-circle nav__icon'></i>
+                    <span class="nav__text">Log Out</span>
+                </a>
+            </nav>
+        </div>
+        
+        <main>
+            <header>
+                <div class="header__logo">
+                    <i class='bx  bx-menu'></i> 
+                </div>
+
+                <div class="dropdown" id="dropdown-content">
+                    <button class="dropdown__button" id="dropdown-button">
+                    <i class="ri-user-3-line dropdown__icon"></i>
+                    <span class="dropdown__name">My profile</span>
+
+                    <div class="dropdown__icons">
+                        <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+                        <i class="ri-close-line dropdown__close"></i>
+                    </div>
+                    </button>
+
+                    <ul class="dropdown__menu">
+                    <li class="dropdown__item">
+                        <i class='bx bx-user dropdown__icon' ></i>
+                        <span class="dropdown__name">Account</span>
+                    </li>
+
+                    <li class="dropdown__item">
+                        <i class='bx bx-bell dropdown__icon' ></i>
+                        <span class="dropdown__name">Noticiations</span>
+                    </li>
+
+                    <li class="dropdown__item">
+                        <i class='bx bx-log-out-circle dropdown__icon'></i>
+                        <span class="dropdown__name">Log Out</span>
+                    </li>
+                    </ul>
+                </div>
+
+            </header> 
+
+            <div class="main">
+                <div class="main-content container">
+                    
+                </div>
+            </div>
+        </main>
+    </body>
+    <!-- MAIN JS -->
+    <script src="{{ url_for('static', path='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</html>

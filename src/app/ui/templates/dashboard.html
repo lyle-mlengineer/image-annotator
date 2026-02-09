@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- STYLES CSS -->
+        <link rel="stylesheet" href="css/dashboard.css">
+
+        <!-- BOX ICONS CSS-->
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
+        <title>Dashboard</title>
+    </head>
+    <body id="body">
+        <div class="l-navbar" id="navbar">
+            <nav class="nav">
+                <div>
+                    <a href="#" class="nav__logo">
+                        <img src="img/logo.svg" alt="" class="nav__logo-icon">
+                        <span class="nav__logo-text">Bedimcode</span>
+                    </a>
+    
+                    <div class="nav__toggle" id="nav-toggle">
+                        <i class='bx bx-chevron-right'></i>
+                    </div>
+    
+                    <ul class="nav__list">
+                        <a href="#" class="nav__link active">
+                            <i class='bx bx-grid-alt nav__icon'></i>
+                            <span class="nav__text">Home</span>
+                        </a>
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-user nav__icon' ></i>
+                            <span class="nav__text">User</span>
+                        </a>
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-bell nav__icon' ></i>
+                            <span class="nav__text">Notification</span>
+                        </a>
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-heart nav__icon'></i>
+                            <span class="nav__text">Favorites</span>
+                        </a>
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-bookmark nav__icon'></i>
+                            <span class="nav__text">Saved</span>
+                        </a>
+                        <a href="#" class="nav__link">
+                            <i class='bx bx-message-rounded nav__icon' ></i>
+                            <span class="nav__text">Chat</span>
+                        </a>                 
+                    </ul>
+                </div>
+                <a href="#" class="nav__link">           
+                    <i class='bx bx-log-out-circle nav__icon'></i>
+                    <span class="nav__text">Close</span>
+                </a>
+            </nav>
+        </div>
+        
+        <main>
+            <header>
+                <h1>Dashboard</h1>
+            </header>
+
+            <div class="main">
+                <div class="main-content container">
+                    <div class="table-header">
+                        <h2>Recent Images</h2>
+                        <div class="upload-form">
+                            <button class="upload-img btn">
+                                <i class="ri-upload-2-line"></i>
+                                <span>Upload Images</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="images">
+                        <table>
+                        <tbody>
+                            <tr class="selected">
+                                <td class="icon"><i class="ri-image-fill"></i></td>
+                                <td class="name">name.png</td>
+                                <td class="size">13.9 MB</td>
+                                <td class="date">2023-01-01</td>
+                                <td class="status"><span class="labelled">Labelled</span></td>
+                                <td class="extension">png</td>
+                                <td class="actions">
+                                    <i class="ri-delete-bin-5-line delete"></i>
+                                    <i class="ri-edit-line edit"></i>
+                                    <i class="ri-eye-line view"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="icon"><i class="ri-image-fill"></i></td>
+                                <td class="name">name.png</td>
+                                <td class="size">13.9 MB</td>
+                                <td class="date">2023-01-01</td>
+                                <td class="status"><span class="labelled">Labelled</span></td>
+                                <td class="extension">png</td>
+                                <td class="actions">
+                                    <i class="ri-delete-bin-5-line delete"></i>
+                                    <i class="ri-edit-line edit"></i>
+                                    <i class="ri-eye-line view"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="icon"><i class="ri-image-fill"></i></td>
+                                <td class="name">name.png</td>
+                                <td class="size">13.9 MB</td>
+                                <td class="date">2023-01-01</td>
+                                <td class="status"><span class="skipped">Skipped</span></td>
+                                <td class="extension">png</td>
+                                <td class="actions">
+                                    <i class="ri-delete-bin-5-line delete"></i>
+                                    <i class="ri-edit-line edit"></i>
+                                    <i class="ri-eye-line view"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="icon"><i class="ri-image-fill"></i></td>
+                                <td class="name">name.png</td>
+                                <td class="size">13.9 MB</td>
+                                <td class="date">2023-01-01</td>
+                                <td class="status"><span class="unlabelled">Unlabelled</span></td>
+                                <td class="extension">png</td>
+                                <td class="actions">
+                                    <i class="ri-delete-bin-5-line delete"></i>
+                                    <i class="ri-edit-line edit"></i>
+                                    <i class="ri-eye-line view"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="no-images">
+                        <p class="no-images__text">No images to label</p>
+                        
+                        </div>
+                    </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </main>
+    </body>
+    <!-- MAIN JS -->
+    <script src="js/dashboard.js"></script>
+</html>
