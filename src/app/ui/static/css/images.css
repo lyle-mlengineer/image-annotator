@@ -250,6 +250,9 @@ header {
   padding: 1rem;
   /* background: var(--gray-bg-color); */
   border-radius: 10px;
+  width: min(100%, 1200px);
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .button-group{

@@ -16,7 +16,7 @@
         <div class="l-navbar" id="navbar">
             <nav class="nav">
                 <div>
-                    <a href="#" class="nav__logo">
+                    <a href="/" class="nav__logo">
                         <img src="{{ url_for('static', path='img/logo.svg') }}" alt="" class="nav__logo-icon">
                         <span class="nav__logo-text">SVFDL</span>
                     </a>
@@ -26,19 +26,19 @@
                     </div>
     
                     <ul class="nav__list">
-                        <a href="#" class="nav__link active">
+                        <a href="/user_dashboard" class="nav__link {% if request.url.path == '/user_dashboard' %}active{% endif %}">
                             <i class='bx bx-grid-alt nav__icon'></i>
                             <span class="nav__text">Dashboard</span>
                         </a>
-                        <a href="#" class="nav__link">
+                        <a href="/upload" class="nav__link {% if request.url.path == '/upload' %}active{% endif %}">
                             <i class='bx bx-plus nav__icon' ></i>
                             <span class="nav__text">Upload</span>
                         </a>
-                        <a href="#" class="nav__link">
+                        <a href="/label" class="nav__link {% if request.url.path == '/label' %}active{% endif %}">
                             <i class='bx bx-edit-alt nav__icon' ></i>
                             <span class="nav__text">Label</span>
                         </a>
-                        <a href="#" class="nav__link">
+                        <a href="/gallery" class="nav__link {% if request.url.path == '/gallery' %}active{% endif %}">
                             <i class='bx bx-images nav__icon' ></i>
                             <span class="nav__text">Gallery</span>
                         </a>
@@ -106,12 +106,14 @@
 
             <div class="main">
                 <div class="main-content container">
+
+                    {% block content %}{% endblock %}
                     
                 </div>
             </div>
         </main>
     </body>
     <!-- MAIN JS -->
-    <script src="{{ url_for('static', path='js/main.js') }}"></script>
+    <script src="{{ url_for('static', path='js/base.js') }}"></script>
     {% block scripts %}{% endblock %}
 </html>

@@ -7,6 +7,83 @@
 {%block content%}
 
 
+<div class="table-header">
+    <h2>Recent Images</h2>
+    <div class="upload-form">
+        <button class="upload-img btn">
+            <i class="ri-upload-2-line"></i>
+            <span>Upload Images</span>
+        </button>
+    </div>
+</div>
+
+<div class="images">
+    <table>
+    <tbody>
+        <tr class="selected">
+            <td class="icon"><i class="ri-image-fill"></i></td>
+            <td class="name">name.png</td>
+            <td class="size">13.9 MB</td>
+            <td class="date">2023-01-01</td>
+            <td class="status"><span class="labelled">Labelled</span></td>
+            <td class="extension">png</td>
+            <td class="actions">
+                <i class="ri-delete-bin-5-line delete"></i>
+                <i class="ri-edit-line edit"></i>
+                <i class="ri-eye-line view"></i>
+            </td>
+        </tr>
+        <tr>
+            <td class="icon"><i class="ri-image-fill"></i></td>
+            <td class="name">name.png</td>
+            <td class="size">13.9 MB</td>
+            <td class="date">2023-01-01</td>
+            <td class="status"><span class="labelled">Labelled</span></td>
+            <td class="extension">png</td>
+            <td class="actions">
+                <i class="ri-delete-bin-5-line delete"></i>
+                <i class="ri-edit-line edit"></i>
+                <i class="ri-eye-line view"></i>
+            </td>
+        </tr>
+        <tr>
+            <td class="icon"><i class="ri-image-fill"></i></td>
+            <td class="name">name.png</td>
+            <td class="size">13.9 MB</td>
+            <td class="date">2023-01-01</td>
+            <td class="status"><span class="skipped">Skipped</span></td>
+            <td class="extension">png</td>
+            <td class="actions">
+                <i class="ri-delete-bin-5-line delete"></i>
+                <i class="ri-edit-line edit"></i>
+                <i class="ri-eye-line view"></i>
+            </td>
+        </tr>
+        <tr>
+            <td class="icon"><i class="ri-image-fill"></i></td>
+            <td class="name">name.png</td>
+            <td class="size">13.9 MB</td>
+            <td class="date">2023-01-01</td>
+            <td class="status"><span class="unlabelled">Unlabelled</span></td>
+            <td class="extension">png</td>
+            <td class="actions">
+                <i class="ri-delete-bin-5-line delete"></i>
+                <i class="ri-edit-line edit"></i>
+                <i class="ri-eye-line view"></i>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- <div class="no-images">
+    <p class="no-images__text">No images to label</p>
+    
+    </div> -->
+</div>
+
+</div>
+
+
 {% endblock %}
 
 {% block scripts %}

@@ -59,15 +59,41 @@ async def get_user_dashboard(request: Request):
         } 
     )
 
-@router.get('/generate_image', status_code=status.HTTP_200_OK, response_class=HTMLResponse)
-async def get_generate_image(request: Request):
-    """Load the generate image page"""
-    logging.info("Loading generate image page")
+@router.get('/upload', status_code=status.HTTP_200_OK, response_class=HTMLResponse)
+async def get_upload_page(request: Request):
+    """Load the upload page"""
+    logging.info("Loading upload page")
     return templates.TemplateResponse(
-        "generate_image.html", 
+        "upload.html", 
         {
             "request": request,
-            "title": "Generate Image"
+            "title": "Upload"
+        } 
+    )
+
+@router.get('/label', status_code=status.HTTP_200_OK, response_class=HTMLResponse)
+async def get_label_page(request: Request):
+    """Load the label page"""
+    logging.info("Loading label page")
+    return templates.TemplateResponse(
+        "label.html", 
+        {
+            "request": request,
+            "title": "Label"
+        } 
+    )
+
+    
+
+@router.get('/view', status_code=status.HTTP_200_OK, response_class=HTMLResponse)
+async def get_view_page(request: Request):
+    """Load the view page"""
+    logging.info("Loading view page")
+    return templates.TemplateResponse(
+        "view.html", 
+        {
+            "request": request,
+            "title": "View"
         } 
     )
 

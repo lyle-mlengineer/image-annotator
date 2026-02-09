@@ -355,7 +355,7 @@ header {
     border-radius: 10px;
     /* width: 90%;
     max-width: 600px; */
-    width: min(100%, 600px);
+    width: min(100%, 900px);
 }
 
 @media screen  and (max-width: 600px) {
