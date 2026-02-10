@@ -1,45 +1,3 @@
-// SHOW MENU
-const showMenu = (toggleId, navbarId,bodyId) =>{
-    const toggle = document.getElementById(toggleId),
-    navbar = document.getElementById(navbarId),
-    bodypadding = document.getElementById(bodyId)
-
-    if(toggle && navbar){
-        toggle.addEventListener('click', ()=>{
-            // APARECER MENU
-            navbar.classList.toggle('show')
-            // ROTATE TOGGLE
-            toggle.classList.toggle('rotate')
-            // PADDING BODY
-            bodypadding.classList.toggle('expander')
-        })
-    }
-}
-showMenu('nav-toggle','navbar','body')
-
-// LINK ACTIVE COLOR
-const linkColor = document.querySelectorAll('.nav__link');   
-function colorLink(){
-    linkColor.forEach(l => l.classList.remove('active'));
-    this.classList.add('active');
-}
-
-linkColor.forEach(l => l.addEventListener('click', colorLink));
-
-/*=============== DROPDOWN JS ===============*/
-const showDropdown = (content, button) =>{
-   const dropdownContent = document.getElementById(content),
-         dropdownButton = document.getElementById(button)
-
-   dropdownButton.addEventListener('click', () =>{
-      // We add the show-dropdown class, so that the menu is displayed
-      dropdownContent.classList.toggle('show-dropdown')
-   })
-}
-
-showDropdown('dropdown-content','dropdown-button')
-
-
 const fileList = document.querySelector(".file-list");
 const fileBrowseButton = document.querySelector(".file-browse-button");
 const fileBrowseInput = document.querySelector(".file-browse-input");
@@ -93,10 +51,9 @@ const handleFileUploading = (file, uniqueIdentifier) => {
         fileSize.innerText = formattedFileSize;
     });
     // Opening connection to the server API endpoint "api.php" and sending the form data
-    // xhr.open("POST", "api.php", true);
-    // xhr.send(formData);
-    // return xhr;
-    console.log(xhr);
+    xhr.open("POST", "/api/v1/images/upload", true);
+    xhr.send(formData);
+    return xhr;
 }
 // Function to handle selected files
 const handleSelectedFiles = ([...files]) => {
@@ -109,32 +66,32 @@ const handleSelectedFiles = ([...files]) => {
         fileList.insertAdjacentHTML("afterbegin", fileItemHTML);
         const currentFileItem = document.querySelector(`#file-item-${uniqueIdentifier}`);
         const cancelFileUploadButton = currentFileItem.querySelector(".cancel-button");
-        // const xhr = handleFileUploading(file, uniqueIdentifier);
-        // // Update file status text and change color of it 
-        // const updateFileStatus = (status, color) => {
-        //     currentFileItem.querySelector(".file-status").innerText = status;
-        //     currentFileItem.querySelector(".file-status").style.color = color;
-        // }
-        // xhr.addEventListener("readystatechange", () => {
-        //     // Handling completion of file upload
-        //     if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-        //         completedFiles++;
-        //         cancelFileUploadButton.remove();
-        //         updateFileStatus("Completed", "#00B125");
-        //         fileCompletedStatus.innerText = `${completedFiles} / ${totalFiles} files completed`;
-        //     }
-        // });
-        // // Handling cancellation of file upload
-        // cancelFileUploadButton.addEventListener("click", () => {
-        //     xhr.abort(); // Cancel file upload
-        //     updateFileStatus("Cancelled", "#E3413F");
-        //     cancelFileUploadButton.remove();
-        // });
-        // // Show Alert if there is any error occured during file uploading
-        // xhr.addEventListener("error", () => {
-        //     updateFileStatus("Error", "#E3413F");
-        //     alert("An error occurred during the file upload!");
-        // });
+        const xhr = handleFileUploading(file, uniqueIdentifier);
+        // Update file status text and change color of it 
+        const updateFileStatus = (status, color) => {
+            currentFileItem.querySelector(".file-status").innerText = status;
+            currentFileItem.querySelector(".file-status").style.color = color;
+        }
+        xhr.addEventListener("readystatechange", () => {
+            // Handling completion of file upload
+            if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                completedFiles++;
+                cancelFileUploadButton.remove();
+                updateFileStatus("Completed", "#00B125");
+                fileCompletedStatus.innerText = `${completedFiles} / ${totalFiles} files completed`;
+            }
+        });
+        // Handling cancellation of file upload
+        cancelFileUploadButton.addEventListener("click", () => {
+            xhr.abort(); // Cancel file upload
+            updateFileStatus("Cancelled", "#E3413F");
+            cancelFileUploadButton.remove();
+        });
+        // Show Alert if there is any error occured during file uploading
+        xhr.addEventListener("error", () => {
+            updateFileStatus("Error", "#E3413F");
+            alert("An error occurred during the file upload!");
+        });
     });
     fileCompletedStatus.innerText = `${completedFiles} / ${totalFiles} files completed`;
 }

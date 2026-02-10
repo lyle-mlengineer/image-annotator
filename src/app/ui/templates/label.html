@@ -42,14 +42,14 @@
     <!-- IMAGE CONTAINER -->
     <section class="image-container" id="imageContainer">
         <!-- IMAGE RESULT -->
-        <img class="image-container__image-result" id="imageResult" src="{{ url_for('static', path='img/example.jpeg') }}" alt="Image to label">
+        <img class="image-container__image-result" id="imageResult" src="{{ url_for('data', path=image_name) }}" alt="Image to label">
     </section>
 
     <!-- FORM CONTAINER -->
     <section class="form-container">
         <div class="prompt-container">
             <!-- PROMPT INPUT -->
-            <textarea class="form-container__prompt-input" id="prompt" rows="5"
+            <textarea class="form-container__prompt-input" id="promptInput" rows="5"
                 placeholder="Describe the face in the image..."></textarea>
 
             <button class="prompt-btn" type="button">
@@ -58,7 +58,7 @@
         </div>
 
 
-        <div class="tags">
+        <div class="tags" id="tags">
             <span class="tag">Bald</span>
             <span class="tag">Light Skinned</span>
             <span class="tag">Dark hair</span>
@@ -69,12 +69,12 @@
 
         <div class="form-container__dropdown-group">
             <!-- DROPDOWN STYLE -->
-            <select class="form-container__dropdown" id="dropdownStyles">
+            <select class="form-container__dropdown" id="genderSelect">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select>
             <!-- DROPDOWN RATIO -->
-            <button class="add-tag btn" onclick="editPrompt()">
+            <button class="add-tag btn" onclick="addTagModal()">
                 <box-icon type='solid' name='edit'></box-icon>
                 <i class='bx  bx-plus'></i> 
                 Add Tag
@@ -94,7 +94,7 @@
                             <i class='bx  bx-plus'></i>
                             Add Tag
                         </button>
-                        <button class="add-tag-modal__button btn" onclick="addTag()">
+                        <button class="add-tag-modal__button btn" onclick="closeAddTagModal()">
                             <i class='bx  bx-x'></i>
                             Cancel
                         </button>
@@ -139,14 +139,14 @@
     </button>
 
     <!-- GENERATE IMAGE BUTTON -->
-    <button class="form-container__button" onclick="generateImage()">
+    <!-- <button class="form-container__button" onclick="generateImage()">
         <box-icon type='solid' name='magic-wand'></box-icon>
         <i class='bx  bx-edit-alt'></i> 
         Edit Description
-    </button>
+    </button> -->
 
     <!-- CLEAR IMAGE BUTTON -->
-    <button class="form-container__button form-container__button--tertiary" onclick="clearImage()">
+    <button class="form-container__button form-container__button--tertiary" onclick="saveImage('{{image_name}}')">
         <box-icon type='solid' name='trash'></box-icon>
         <i class='bx  bx-save'></i> 
         Save Changes

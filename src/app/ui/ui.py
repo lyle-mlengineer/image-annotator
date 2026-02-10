@@ -6,6 +6,7 @@ from fastapi.templating import Jinja2Templates
 import logging
 
 from app.core.config import config
+from app.ui.ui_helpers import list_images, get_image
 
 templates = Jinja2Templates(directory=config.TEMPLATES_DIR)
 
@@ -71,7 +72,7 @@ async def get_upload_page(request: Request):
         } 
     )
 
-@router.get('/label', status_code=status.HTTP_200_OK, response_class=HTMLResponse)
+@router.get('/image/label', status_code=status.HTTP_200_OK, response_class=HTMLResponse)
 async def get_label_page(request: Request):
     """Load the label page"""
     logging.info("Loading label page")
@@ -79,21 +80,23 @@ async def get_label_page(request: Request):
         "label.html", 
         {
             "request": request,
-            "title": "Label"
+            "title": "Label",
+            "image_name": get_image()
         } 
     )
 
     
 
-@router.get('/view', status_code=status.HTTP_200_OK, response_class=HTMLResponse)
-async def get_view_page(request: Request):
+@router.get('/image/view/{image_name}', status_code=status.HTTP_200_OK, response_class=HTMLResponse)
+async def get_view_page(request: Request, image_name: str):
     """Load the view page"""
     logging.info("Loading view page")
     return templates.TemplateResponse(
         "view.html", 
         {
             "request": request,
-            "title": "View"
+            "title": "View",
+            "image_name": image_name
         } 
     )
 
@@ -102,10 +105,11 @@ async def get_gallery(request: Request):
     """Load the gallery page"""
     logging.info("Loading gallery page")
     return templates.TemplateResponse(
-        "gallery.html", 
+        "gallery_.html", 
         {
             "request": request,
-            "title": "Gallery"
+            "title": "Gallery",
+            "images": list_images()
         } 
     )
 

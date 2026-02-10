@@ -1,0 +1,42 @@
+{%extends "_base.html" %} 
+
+    {% block styles %}
+        <link rel="stylesheet" href="{{ url_for('static', path='css/images.css') }}">
+    {% endblock %}
+
+{%block content%}
+
+<!--  *****  Buttons Section Starts  *****  -->
+<div class="button-group">
+    <button class="button active" data-filter="*">All</button>
+    <button class="button" data-filter=".design">Male</button>
+    <button class="button" data-filter=".development">Female</button>
+    <button class="button" data-filter=".logo">Bald</button>
+    <button class="button" data-filter=".logo">Dark Skin</button>
+    <button class="button" data-filter=".logo">Light Skin</button>
+</div>
+<!--  *****  Buttons Section Ends  *****  -->
+
+<div class="image-filter">
+    <input type="search" name="image_filter" id="imageFilter" placeholder="Search" autofocus>
+</div>
+
+<div class="gallery grid">
+    
+    {% for image in images %}
+    <div class="item development">
+        <img src="{{ url_for('data', path=image) }}" alt="{{ image }}">
+        <div class="overlay">
+            <a href="/image/view/{{ image }}">VIEW MORE</a>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+<!--  *****  Gallery Section Ends  *****  --> 
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', path='js/images.js') }}"></script>
+{% endblock %}
