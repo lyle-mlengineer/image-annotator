@@ -2,13 +2,17 @@
 import aiofiles
 import os
 import uuid
-from fastapi import File, UploadFile, HTTPException, APIRouter, Request, status
-from fastapi.responses import HTMLResponse
+from fastapi import File, UploadFile, HTTPException, APIRouter, Request, status, Depends
 from pydantic import BaseModel
 
 import logging
 
 from app.core.config import config
+from app.services.utils import (
+    get_image_service, ImageService, get_image_label_service, ImageLabelService
+)
+from app.models.image_model import ImageRead, ImageCreate
+from app.models.image_label_model import ImageLabelCreate, ImageLabelRead, ImageLabelUpdate
 
 router = APIRouter(
     tags=["Images"],
@@ -22,9 +26,10 @@ class LabelRequest(BaseModel):
 
 
 @router.post("/upload")
-async def upload_simple(
+async def upload_image(
     request: Request,
     file: UploadFile = File(...),
+    service: ImageService = Depends(get_image_service)
     ):
     """
     Saves a file to the upload directory with a secure, unique filename.
@@ -48,18 +53,39 @@ async def upload_simple(
         # Ensure the temporary file is closed
         await file.close()
 
+    try:
+        image = ImageCreate(
+            image_name=secure_filename,
+        )
+        service.create_image(image)
+    except Exception as e:
+        logging.error(f"Error creating image: {e}")
+        os.remove(file_path)
+        raise HTTPException(status_code=500, detail=f"Error saving file: {e}")
+
     return {
-        "filename": file.filename,
+        "filename": secure_filename,
         "content_type": file.content_type,
         "stored_at": file_path,
         "url": file_url.__str__(),
     }
 
 @router.post("/label", status_code=status.HTTP_200_OK)
-async def get_label_page(
+async def label_image(
     request: Request,
-    label_request: LabelRequest
+    label_request: LabelRequest,
+    service: ImageLabelService = Depends(get_image_label_service)
     ):
     """Load the label page"""
-    return label_request
+    logging.info("Labeling image")
+    print(label_request.tags)
+    label: ImageLabelRead = service.create_image_label(
+        image_label=ImageLabelCreate(
+            image_name=label_request.image_name,
+            prompt=label_request.prompt,
+            tags=','.join(label_request.tags),
+            gender=label_request.gender
+        )
+    )
+    return label
     

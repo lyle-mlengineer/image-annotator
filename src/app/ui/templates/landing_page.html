@@ -29,7 +29,7 @@
                             <a href="#" class="nav__link">About</a>
                         </li>
                         <li class="nav__item">
-                            <a href="#" class="nav__link">Login</a>
+                            <a href="/login" class="nav__link">Login</a>
                         </li>
                     </ul>
 
@@ -76,9 +76,9 @@
         </main>
 
         <!--=============== SCROLLREVEAL ===============-->
-        <script src="js/scrollreveal.min.js"></script>
+        <script src="{{ url_for('static', path='js/scrollreveal.min.js') }}"></script>
 
         <!--=============== MAIN JS ===============-->
-        <script src="js/landing_page.js"></script>
+        <script src="{{ url_for('static', path='js/landing_page.js') }}"></script>
     </body>
 </html>

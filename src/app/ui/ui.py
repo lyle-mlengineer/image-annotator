@@ -7,6 +7,8 @@ import logging
 
 from app.core.config import config
 from app.ui.ui_helpers import list_images, get_image
+from app.services.utils import ImageService, get_image_service
+from app.models.image_model import ImageRead
 
 templates = Jinja2Templates(directory=config.TEMPLATES_DIR)
 
@@ -73,43 +75,52 @@ async def get_upload_page(request: Request):
     )
 
 @router.get('/image/label', status_code=status.HTTP_200_OK, response_class=HTMLResponse)
-async def get_label_page(request: Request):
+async def get_label_page(request: Request, service: ImageService = Depends(get_image_service)):
     """Load the label page"""
     logging.info("Loading label page")
+    image: ImageRead = service.get_unlabelled_image()
+    if image:
+        image_name = image.image_name
+    else:
+        image_name = None
     return templates.TemplateResponse(
         "label.html", 
         {
             "request": request,
             "title": "Label",
-            "image_name": get_image()
+            "image_name": image_name
         } 
     )
 
     
 
 @router.get('/image/view/{image_name}', status_code=status.HTTP_200_OK, response_class=HTMLResponse)
-async def get_view_page(request: Request, image_name: str):
+async def get_view_page(request: Request, image_name: str, service: ImageService = Depends(get_image_service)):
     """Load the view page"""
     logging.info("Loading view page")
+    image: ImageRead = service.get_image_by_name(image_name)
     return templates.TemplateResponse(
         "view.html", 
         {
             "request": request,
             "title": "View",
-            "image_name": image_name
+            "image": image,
+            "label": image.label
         } 
     )
 
 @router.get('/gallery', status_code=status.HTTP_200_OK, response_class=HTMLResponse)
-async def get_gallery(request: Request):
+async def get_gallery(request: Request, service: ImageService = Depends(get_image_service)):
     """Load the gallery page"""
     logging.info("Loading gallery page")
+    images: list[ImageRead] = service.get_all_images(limit=None, offset=None)
+    image_names = [image.image_name for image in images]
     return templates.TemplateResponse(
         "gallery_.html", 
         {
             "request": request,
             "title": "Gallery",
-            "images": list_images()
+            "images": image_names
         } 
     )
 

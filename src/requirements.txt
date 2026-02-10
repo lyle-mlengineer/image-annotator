@@ -15,3 +15,4 @@ itsdangerous
 pwdlib[argon2]
 redis
 celery[redis]
+tenacity

@@ -34,7 +34,7 @@ function saveImage(image_name){
     }).then(response => response.json())
     .then(data => {
         console.log(data)
-        window.location.href = `/image/label`
+        // window.location.href = `/image/label`
     }).catch(error => {
         console.error(error)
     })
